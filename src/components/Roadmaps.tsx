@@ -1,23 +1,28 @@
-import Link from "next/link";
 import React from "react";
+import RoadmapBadge from "./RoadmapBadge";
 
 const roadmaps = [
   {
     id: "roadmap_fe",
     title: "Frontend Developer",
-    description: "A step-by-step guide to becoming a frontend developer.",
+    description:
+      "A step-by-step guide to becoming a skilled frontend developer by learning the foundational web technologies and modern frameworks.",
     items: [
       {
         id: "html_css",
         title: "HTML & CSS",
         type: "topic",
         subtopicTo: null,
+        description:
+          "Start your frontend journey by mastering HTML and CSS, the building blocks of the web. HTML defines the structure of web content using semantic tags, while CSS controls the appearance and layout. Together, they form the core skills required to build accessible and visually appealing web pages.",
         items: [
           {
             id: "semantic_html",
             title: "Semantic HTML",
             type: "subtopic",
             subtopicTo: "html_css",
+            description:
+              "Semantic HTML refers to using HTML5 elements that clearly describe their meaning in a human- and machine-readable way. Elements like <article>, <section>, and <nav> help improve accessibility, SEO, and maintainable code by giving clear structure to your content.",
             items: [],
           },
           {
@@ -25,6 +30,8 @@ const roadmaps = [
             title: "Accessibility Basics",
             type: "subtopic",
             subtopicTo: "html_css",
+            description:
+              "Accessibility ensures that your websites are usable by people with disabilities. It involves using semantic HTML, proper contrast ratios, alt attributes for images, keyboard navigation, and ARIA labels to create inclusive digital experiences.",
             items: [],
           },
         ],
@@ -34,12 +41,16 @@ const roadmaps = [
         title: "JavaScript",
         type: "topic",
         subtopicTo: null,
+        description:
+          "JavaScript brings interactivity to the web. It enables dynamic content updates, form validation, API requests, and more. Learning JavaScript fundamentals is crucial for understanding how websites behave and how to manipulate elements on the page.",
         items: [
           {
             id: "es6",
             title: "ES6+ Syntax",
             type: "subtopic",
             subtopicTo: "javascript",
+            description:
+              "ES6 introduced modern features like arrow functions, template literals, destructuring, spread/rest operators, and modules. Understanding ES6+ syntax improves code readability, reduces boilerplate, and is essential for working with modern libraries and frameworks.",
             items: [],
           },
           {
@@ -47,6 +58,8 @@ const roadmaps = [
             title: "Async JavaScript",
             type: "subtopic",
             subtopicTo: "javascript",
+            description:
+              "Async JavaScript includes promises, async/await, and fetch API. It allows you to handle time-consuming operations like API calls or timers without freezing the browser. Mastering async patterns is crucial for building smooth and responsive applications.",
             items: [],
           },
         ],
@@ -56,12 +69,16 @@ const roadmaps = [
         title: "Frameworks",
         type: "topic",
         subtopicTo: null,
+        description:
+          "Frameworks simplify complex frontend development by offering structure and reusable components. They help manage state, routing, rendering, and performance. Knowing at least one major frontend framework is expected in most modern web dev jobs.",
         items: [
           {
             id: "react",
             title: "React",
             type: "subtopic",
             subtopicTo: "frameworks",
+            description:
+              "React is a component-based JavaScript library for building user interfaces. It uses a virtual DOM to efficiently update the UI, and hooks to manage state and lifecycle. Its popularity, ecosystem, and community make it a top choice for modern frontend development.",
             items: [],
           },
           {
@@ -69,162 +86,8 @@ const roadmaps = [
             title: "Vue",
             type: "subtopic",
             subtopicTo: "frameworks",
-            items: [],
-          },
-        ],
-      },
-    ],
-  },
-
-  {
-    id: "roadmap_fs",
-    title: "Full Stack Developer",
-    description:
-      "Learn both frontend and backend to become a full stack developer.",
-    items: [
-      {
-        id: "frontend",
-        title: "Frontend",
-        type: "topic",
-        subtopicTo: null,
-        items: [
-          {
-            id: "react_fs",
-            title: "React Fundamentals",
-            type: "subtopic",
-            subtopicTo: "frontend",
-            items: [],
-          },
-          {
-            id: "vue_fs",
-            title: "Vue Basics",
-            type: "subtopic",
-            subtopicTo: "frontend",
-            items: [],
-          },
-        ],
-      },
-      {
-        id: "backend",
-        title: "Backend",
-        type: "topic",
-        subtopicTo: null,
-        items: [
-          {
-            id: "nodejs",
-            title: "Node.js",
-            type: "subtopic",
-            subtopicTo: "backend",
-            items: [],
-          },
-          {
-            id: "express",
-            title: "Express.js",
-            type: "subtopic",
-            subtopicTo: "backend",
-            items: [],
-          },
-          {
-            id: "auth",
-            title: "Authentication",
-            type: "subtopic",
-            subtopicTo: "backend",
-            items: [],
-          },
-        ],
-      },
-      {
-        id: "database",
-        title: "Databases",
-        type: "topic",
-        subtopicTo: null,
-        items: [
-          {
-            id: "mongodb",
-            title: "MongoDB",
-            type: "subtopic",
-            subtopicTo: "database",
-            items: [],
-          },
-          {
-            id: "sql",
-            title: "SQL Basics",
-            type: "subtopic",
-            subtopicTo: "database",
-            items: [],
-          },
-        ],
-      },
-    ],
-  },
-
-  {
-    id: "roadmap_uiux",
-    title: "UI/UX Designer",
-    description: "Master the skills needed to design great user experiences.",
-    items: [
-      {
-        id: "ux_research",
-        title: "UX Research",
-        type: "topic",
-        subtopicTo: null,
-        items: [
-          {
-            id: "user_persona",
-            title: "User Personas",
-            type: "subtopic",
-            subtopicTo: "ux_research",
-            items: [],
-          },
-          {
-            id: "usability_testing",
-            title: "Usability Testing",
-            type: "subtopic",
-            subtopicTo: "ux_research",
-            items: [],
-          },
-        ],
-      },
-      {
-        id: "ui_design",
-        title: "UI Design",
-        type: "topic",
-        subtopicTo: null,
-        items: [
-          {
-            id: "color_theory",
-            title: "Color Theory",
-            type: "subtopic",
-            subtopicTo: "ui_design",
-            items: [],
-          },
-          {
-            id: "typography",
-            title: "Typography",
-            type: "subtopic",
-            subtopicTo: "ui_design",
-            items: [],
-          },
-        ],
-      },
-      {
-        id: "tools",
-        title: "Design Tools",
-        type: "topic",
-        subtopicTo: null,
-        items: [
-          {
-            id: "figma",
-            title: "Figma Basics",
-            type: "subtopic",
-            subtopicTo: "tools",
-            items: [],
-          },
-          {
-            id: "adobe_xd",
-            title: "Adobe XD",
-            type: "subtopic",
-            subtopicTo: "tools",
+            description:
+              "Vue is a progressive framework for building user interfaces. It is approachable, integrates easily with projects, and offers features like reactive data binding, directives, and a simple component model. Ideal for both small apps and large-scale projects.",
             items: [],
           },
         ],
@@ -239,13 +102,7 @@ const Roadmaps = () => {
       <h2 className="text-center text-lg mb-4">Roadmaps</h2>
       <div className="flex gap-4 justify-center flex-wrap">
         {roadmaps.map((roadmap) => (
-          <Link
-            href={`/roadmaps/${roadmap.id}`}
-            key={roadmap.id}
-            className="border border-slate-800 rounded-xl px-3 py-1.5"
-          >
-            <h3>{roadmap.title}</h3>
-          </Link>
+          <RoadmapBadge roadmap={roadmap} key={roadmap.id} />
         ))}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, IBM_Plex_Sans } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import ClerkAuthProvider from "@/providers/ClerkAuthProvider";
 import Navbar from "@/components/Navbar";
@@ -26,7 +26,7 @@ export default function RootLayout({
       >
         <ClerkAuthProvider>
           <Navbar />
-          {children}
+          <main className="mt-5">{children}</main>
         </ClerkAuthProvider>
       </body>
     </html>

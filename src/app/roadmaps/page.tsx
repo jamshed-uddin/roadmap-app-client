@@ -1,11 +1,12 @@
-import Hero from "@/components/Hero";
 import Roadmaps from "@/components/Roadmaps";
+import React from "react";
 
-export default async function Home() {
+const RoadmapsPage = () => {
   return (
     <div>
-      <Hero />
       <Roadmaps />
     </div>
   );
-}
+};
+
+export default RoadmapsPage;

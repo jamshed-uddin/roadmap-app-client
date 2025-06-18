@@ -1,7 +1,13 @@
 import RoadmapItems from "@/components/RoadmapItems";
+import { ItemType } from "@/definition";
 import React from "react";
 
-const roadmaps = [
+const roadmaps: {
+  id: string;
+  title: string;
+  description: string;
+  items: ItemType[];
+}[] = [
   {
     id: "roadmap_fe",
     title: "Frontend Developer",
@@ -112,7 +118,7 @@ const RoadmapDetailPage = async ({
       </div>
 
       <div className="mt-10">
-        <RoadmapItems items={roadmap?.items} />
+        <RoadmapItems items={roadmap?.items as ItemType[]} />
       </div>
     </div>
   );

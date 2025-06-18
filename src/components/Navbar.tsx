@@ -1,4 +1,4 @@
-import { SignInButton } from "@clerk/nextjs";
+import { SignInButton, SignOutButton } from "@clerk/nextjs";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,17 +23,20 @@ const Navbar = async () => {
         </li>
         <li>
           {isAuthenticated ? (
-            <div className="w-8 h-8 rounded-full overflow-hidden">
-              <Image
-                src={
-                  (user?.externalAccounts[0].imageUrl as string) ||
-                  (user?.imageUrl as string)
-                }
-                alt={user?.fullName || "User avatar"}
-                height={20}
-                width={30}
-                className="rounded-full h-full  w-full object-cover"
-              />
+            <div>
+              <div className="w-8 h-8 rounded-full overflow-hidden">
+                <Image
+                  src={
+                    (user?.externalAccounts[0].imageUrl as string) ||
+                    (user?.imageUrl as string)
+                  }
+                  alt={user?.fullName || "User avatar"}
+                  height={20}
+                  width={30}
+                  className="rounded-full h-full  w-full object-cover"
+                />
+              </div>
+              <SignOutButton />
             </div>
           ) : (
             <div

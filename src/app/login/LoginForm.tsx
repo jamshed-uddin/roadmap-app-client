@@ -39,9 +39,9 @@ const LoginForm = () => {
       const res = await login(data).unwrap();
       localStorage.setItem("userInfo", JSON.stringify(res?.data));
       dispatch(setUser(res?.data));
-      setCookie("token", res?.data.token);
+      setCookie("token", res?.data?.token);
       reset();
-      router.replace("/dashboard");
+      router.replace("/");
     } catch (error) {
       const fetchError = error as FetchBaseQueryError;
       setError(
@@ -52,7 +52,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="lg:w-1/4 w-[90%]">
+    <div className="lg:w-1/4 w-[95%]">
       <h3 className="uppercase text-lg mb-4 font-semibold">Login</h3>
       <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div>

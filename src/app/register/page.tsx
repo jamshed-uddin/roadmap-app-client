@@ -3,7 +3,7 @@ import RegisterForm from "./RegisterForm";
 
 const Register = async () => {
   return (
-    <div className="h-full ">
+    <div className="h-screen ">
       <div className="h-full flex items-center justify-center">
         <RegisterForm />
       </div>

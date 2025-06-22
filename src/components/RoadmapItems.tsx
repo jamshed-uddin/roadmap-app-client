@@ -5,20 +5,20 @@ import React from "react";
 const RoadmapItems = ({ items }: { items: ItemType[] }) => {
   return (
     <div>
-      {items.map((item, idx) => (
+      {items?.map((item) => (
         <div
-          key={item.id}
-          className={clsx("", item.type === "topic" ? "" : "pl-4 ")}
+          key={item._id}
+          className={clsx("", item.type === "topic" ? "" : "pl-5 ")}
         >
           <div
             className={clsx(
               " py-2",
               item.type === "topic"
-                ? "border-b border-gray-400"
-                : "border-b border-gray-300 "
+                ? "border-b border-gray-300"
+                : " text-sm my-2"
             )}
           >
-            {item.type === "topic" && `${idx + 1} .`} {item.title}
+            {item.title}
           </div>
           <RoadmapItems items={item?.items} />
         </div>

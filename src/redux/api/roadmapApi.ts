@@ -1,8 +1,12 @@
+import { RoadmapType } from "@/definition";
 import { baseApi } from "./baseApi";
 
 const roadmapApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getRoadmap: builder.query({
+    getRoadmap: builder.query<
+      RoadmapType[],
+      { status?: string; popular?: boolean }
+    >({
       query: (queryParams) => {
         const { status, popular } = queryParams;
         let url = "/roadmaps";
@@ -18,7 +22,12 @@ const roadmapApi = baseApi.injectEndpoints({
         return url;
       },
     }),
+    getSingleRoadmap: builder.query<RoadmapType, string>({
+      query: (roadmapId) => ({
+        url: `/roadmaps/${roadmapId}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetRoadmapQuery } = roadmapApi;
+export const { useGetRoadmapQuery, useGetSingleRoadmapQuery } = roadmapApi;

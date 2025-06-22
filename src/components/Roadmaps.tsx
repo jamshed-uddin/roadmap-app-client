@@ -7,7 +7,6 @@ import { RoadmapListSkeleton } from "./Skeletons";
 
 const Roadmaps = () => {
   const { data, isLoading, error } = useGetRoadmapQuery({});
-  console.log(data);
 
   return (
     <div>
@@ -17,7 +16,7 @@ const Roadmaps = () => {
       ) : error ? (
         <h3 className="text-center ">Failed to load roadmaps</h3>
       ) : (
-        <RoadmapLIst roadmaps={data} />
+        <RoadmapLIst roadmaps={data ?? []} />
       )}
     </div>
   );

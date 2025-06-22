@@ -1,4 +1,4 @@
-import { UserInfo } from "@/lib/types";
+import { UserInfo } from "@/definition";
 import { baseApi } from "./baseApi";
 
 const userApis = baseApi.injectEndpoints({

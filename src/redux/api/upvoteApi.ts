@@ -3,10 +3,11 @@ import { baseApi } from "./baseApi";
 
 const upvoteApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getUpvotes: builder.query<UpvoteType, string>({
+    getUpvotes: builder.query<UpvoteType[] | [], string>({
       query: (itemId) => ({
         url: `/upvotes?itemId=${itemId}`,
       }),
+      providesTags: ["Upvotes"],
     }),
     saveUpvote: builder.mutation<{ message: string }, { itemId: string }>({
       query: (body) => ({
@@ -14,6 +15,7 @@ const upvoteApi = baseApi.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["Upvotes"],
     }),
 
     deleteUpvote: builder.mutation<{ message: string }, string>({
@@ -21,6 +23,7 @@ const upvoteApi = baseApi.injectEndpoints({
         url: `/upvotes/${itemId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Upvotes"],
     }),
   }),
 });

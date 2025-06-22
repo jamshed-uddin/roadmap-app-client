@@ -7,7 +7,7 @@ import React from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
+
   const { userInfo } = useAppSelector((state) => state.user);
 
   if (pathname === "/login" || pathname === "/register") return null;
@@ -28,17 +28,17 @@ const Navbar = () => {
         <li>
           {userInfo ? (
             <Link
-              href={"/login"}
-              className="bg-indigo-600 rounded-md text-slate-100 px-3 py-1.5 active:scale-95 font-medium cursor-pointer"
-            >
-              Login
-            </Link>
-          ) : (
-            <Link
               href={"/account"}
               className="bg-indigo-600 rounded-md text-slate-100 px-3 py-1.5 active:scale-95 font-medium cursor-pointer"
             >
               Account
+            </Link>
+          ) : (
+            <Link
+              href={"/login"}
+              className="bg-indigo-600 rounded-md text-slate-100 px-3 py-1.5 active:scale-95 font-medium cursor-pointer"
+            >
+              Login
             </Link>
           )}
         </li>

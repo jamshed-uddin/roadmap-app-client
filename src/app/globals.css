@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+button {
+  cursor: pointer;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  overflow: scroll;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

@@ -12,6 +12,7 @@ export type ItemType = {
   _id: string;
   title: string;
   type: string;
+  roadmapId: string;
   subtopicTo: string | null;
   description: string;
   items: ItemType[];
@@ -23,4 +24,10 @@ export type RoadmapType = {
   description: string;
   items: ItemType[];
   upvoteCount: number;
+  totalItems: number;
+};
+
+export type UpvoteType = {
+  userId: string;
+  itemId: string;
 };

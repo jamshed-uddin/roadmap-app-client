@@ -1,16 +1,10 @@
 import React from "react";
 import RoadmapDetails from "./RoadmapDetails";
 
-const RoadmapDetailPage = async ({
-  params,
-}: {
-  params: Promise<{ roadmapId: string }>;
-}) => {
-  const { roadmapId } = await params;
-
+const RoadmapDetailPage = async () => {
   return (
     <div>
-      <RoadmapDetails roadmapId={roadmapId} />
+      <RoadmapDetails />
     </div>
   );
 };

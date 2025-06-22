@@ -4,15 +4,19 @@ import RoadmapItems from "@/components/RoadmapItems";
 import { RoadmapDetailsSkeleton } from "@/components/Skeletons";
 
 import { useGetSingleRoadmapQuery } from "@/redux/api/roadmapApi";
+import { useParams } from "next/navigation";
 import React from "react";
 
-const RoadmapDetails = ({ roadmapId }: { roadmapId: string }) => {
+const RoadmapDetails = () => {
+  const { roadmapId } = useParams();
+
+  console.log(typeof roadmapId);
+
   const {
     data: roadmap,
     isLoading,
     error,
-  } = useGetSingleRoadmapQuery(roadmapId);
-  console.log(roadmap?.items);
+  } = useGetSingleRoadmapQuery(roadmapId as string);
 
   if (isLoading) {
     return <RoadmapDetailsSkeleton />;

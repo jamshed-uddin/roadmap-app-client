@@ -3,12 +3,20 @@
 import { useAppSelector } from "@/hooks/hook";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
 
   const { userInfo } = useAppSelector((state) => state.user);
+
+  //to avoid hydration error
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   if (pathname === "/login" || pathname === "/register") return null;
 

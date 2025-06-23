@@ -28,6 +28,15 @@ export type RoadmapType = {
 };
 
 export type UpvoteType = {
+  _id: string;
   userId: string;
   itemId: string;
+};
+export type CommentType = {
+  _id: string;
+  itemId: string;
+  userId: Pick<UserInfo, "name">;
+  replyTo: string;
+  content: string;
+  replies: CommentType[];
 };

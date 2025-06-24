@@ -21,26 +21,30 @@ const Comment = ({ comment }: { comment: CommentType }) => {
         <div className="bg-gray-200 p-2 rounded-lg ">
           <h3 className="text-xs font-semibold">{comment.userId.name}</h3>
           <p>{comment.content}</p>
-          <div className="flex items-center gap-2 text-xs font-semibold mt-2">
-            <button onClick={() => setOpenReplyInput((p) => !p)}>Reply</button>
-            {comment.userId._id === userInfo?._id && (
-              <>
-                <button onClick={() => setOpenEditInput((p) => !p)}>
-                  Edit
-                </button>
-                <button
-                  onClick={() => deleteComment(comment._id)}
-                  disabled={deleteCommentLoading}
-                  className="flex items-center gap-1"
-                >
-                  <span>Delete</span>{" "}
-                  {deleteCommentLoading && (
-                    <Spinner borderColor="black" variant="small" />
-                  )}
-                </button>
-              </>
-            )}
-          </div>
+          {userInfo && (
+            <div className="flex items-center gap-2 text-xs font-semibold mt-2">
+              <button onClick={() => setOpenReplyInput((p) => !p)}>
+                Reply
+              </button>
+              {comment.userId._id === userInfo?._id && (
+                <>
+                  <button onClick={() => setOpenEditInput((p) => !p)}>
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => deleteComment(comment._id)}
+                    disabled={deleteCommentLoading}
+                    className="flex items-center gap-1"
+                  >
+                    <span>Delete</span>{" "}
+                    {deleteCommentLoading && (
+                      <Spinner borderColor="black" variant="small" />
+                    )}
+                  </button>
+                </>
+              )}
+            </div>
+          )}
         </div>
         {openReplyInput && (
           <div className="mt-2">

@@ -1,4 +1,5 @@
 import { UserInfo } from "@/definition";
+import { deleteCookie } from "@/lib/cookies";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface InitialState {
@@ -25,6 +26,7 @@ const userSlice = createSlice({
     removeUser: (state) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
+      deleteCookie("token");
     },
   },
 });

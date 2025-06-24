@@ -49,6 +49,7 @@ const CommentInput = ({
   }, [content]);
 
   const handleSaveComment = () => {
+    if (!userInfo) return;
     try {
       if (content) {
         const editedContent = {
@@ -96,7 +97,7 @@ const CommentInput = ({
         </Button>
         <Button
           onClick={handleSaveComment}
-          disabled={createCommentLoading || updateCommentLoading}
+          disabled={createCommentLoading || updateCommentLoading || !userInfo}
           loading={createCommentLoading || updateCommentLoading}
         >
           Comment

@@ -48,7 +48,7 @@ const CommentInput = ({
     }
   }, [content]);
 
-  const handleSaveComment = () => {
+  const handleSaveComment = async () => {
     if (!userInfo) return;
     try {
       if (content) {
@@ -57,11 +57,16 @@ const CommentInput = ({
         };
 
         console.log(editedContent);
-        updateComment({
+        const res = await updateComment({
           id: commentId as string,
           content: commentInput,
           userId: userInfo?._id as string,
         });
+
+        if (res.error) {
+          return toast.error("Failed to edit comment");
+        }
+
         onCommentSave?.();
         setCommentInput("");
       } else {
@@ -72,8 +77,10 @@ const CommentInput = ({
           replyTo,
         };
 
-        console.log(comment);
-        createComment(comment);
+        const res = await createComment(comment);
+        if (res.error) {
+          return toast.error("Failed to post comment");
+        }
         setCommentInput("");
       }
     } catch {
@@ -92,7 +99,13 @@ const CommentInput = ({
         value={commentInput}
       />
       <div className=" flex justify-end gap-2">
-        <Button onClick={onCancelClick} variant="secondary">
+        <Button
+          onClick={() => {
+            onCancelClick?.();
+            setCommentInput("");
+          }}
+          variant="secondary"
+        >
           Cancel
         </Button>
         <Button

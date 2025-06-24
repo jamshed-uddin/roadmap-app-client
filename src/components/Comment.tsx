@@ -7,6 +7,7 @@ import CommentInput from "./CommentInput";
 import { useAppSelector } from "@/hooks/hook";
 import { useDeleteCommentMutation } from "@/redux/api/commentApi";
 import Spinner from "./Spinner";
+import toast from "react-hot-toast";
 
 const Comment = ({ comment }: { comment: CommentType }) => {
   const [openReplies, setOpenReplies] = useState(true);
@@ -15,6 +16,18 @@ const Comment = ({ comment }: { comment: CommentType }) => {
   const { userInfo } = useAppSelector((state) => state.user);
   const [deleteComment, { isLoading: deleteCommentLoading }] =
     useDeleteCommentMutation();
+
+  const handleDeleteComment = async () => {
+    try {
+      const res = await deleteComment(comment._id);
+      if (res.error) {
+        toast.error("Failed to delete comment");
+      }
+    } catch {
+      toast.error("Failed to delete comment");
+    }
+  };
+
   return (
     <div className="">
       <div className=" mb-3">
@@ -32,7 +45,7 @@ const Comment = ({ comment }: { comment: CommentType }) => {
                     Edit
                   </button>
                   <button
-                    onClick={() => deleteComment(comment._id)}
+                    onClick={handleDeleteComment}
                     disabled={deleteCommentLoading}
                     className="flex items-center gap-1"
                   >

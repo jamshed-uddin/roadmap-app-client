@@ -13,7 +13,8 @@ const ibmPlex = IBM_Plex_Sans({
 
 export const metadata: Metadata = {
   title: "UpTrack",
-  description: "",
+  description:
+    "Track your journey, mark progress, stay focused and keep moving forward",
 };
 
 export default function RootLayout({
@@ -29,7 +30,7 @@ export default function RootLayout({
         <StoreProvider>
           <Toaster />
           <Navbar />
-          <main className="mt-5">{children}</main>
+          <main className="my-5">{children}</main>
         </StoreProvider>
       </body>
     </html>

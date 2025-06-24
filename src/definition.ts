@@ -40,3 +40,11 @@ export type CommentType = {
   content: string;
   replies: CommentType[];
 };
+
+export type ProgressType = {
+  _id: string;
+  userId: string;
+  roadmapId: string;
+  itemId: string;
+  status: "inProgress" | "complete";
+};

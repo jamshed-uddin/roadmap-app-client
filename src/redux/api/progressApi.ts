@@ -9,7 +9,10 @@ const progressApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Progress"],
     }),
-    getItemProgress: builder.query<ProgressType, { itemId: string }>({
+    getItemProgress: builder.query<
+      { progress: ProgressType },
+      { itemId: string }
+    >({
       query: ({ itemId }) => ({
         url: `/progresses/${itemId}`,
       }),
@@ -20,7 +23,7 @@ const progressApi = baseApi.injectEndpoints({
       {
         roadmapId: string;
         itemId: string;
-        status: "pending" | "inProgress" | "complete";
+        status: string | "pending" | "inProgress" | "complete";
       }
     >({
       query: (body) => ({

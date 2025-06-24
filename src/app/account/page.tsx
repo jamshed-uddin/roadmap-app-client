@@ -1,9 +1,18 @@
 import ChangePassword from "@/components/ChangePassword";
 import DeleteAccount from "@/components/DeleteAccount";
 import UserInfo from "@/components/UserInfo";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const Account = () => {
+const Account = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  if (!token) {
+    redirect("/");
+  }
+
   return (
     <div className="lg:w-1/2 space-y-10">
       <div>

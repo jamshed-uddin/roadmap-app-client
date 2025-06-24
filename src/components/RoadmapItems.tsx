@@ -1,7 +1,7 @@
 import { ItemType } from "@/definition";
 import clsx from "clsx";
-import Link from "next/link";
 import React from "react";
+import RoadmapItemTitleLink from "./RoadmapItemTitleLink";
 
 const RoadmapItems = ({ items }: { items: ItemType[] }) => {
   return (
@@ -11,17 +11,7 @@ const RoadmapItems = ({ items }: { items: ItemType[] }) => {
           key={item._id}
           className={clsx("", item.type === "topic" ? "" : "pl-5 ")}
         >
-          <Link
-            href={`/roadmaps/${item.roadmapId}/${item._id}`}
-            className={clsx(
-              " py-2 block ",
-              item.type === "topic"
-                ? "border-b border-gray-300"
-                : " text-sm my-2"
-            )}
-          >
-            {item.title}
-          </Link>
+          <RoadmapItemTitleLink item={item} />
           <RoadmapItems items={item?.items} />
         </div>
       ))}

@@ -1,7 +1,7 @@
-import Roadmaps from "@/components/Roadmaps";
-import { RoadmapListSkeleton } from "@/components/Skeletons";
+import RoadmapsWrapper from "@/components/RoadmapsWrapper";
+
 import { Metadata } from "next";
-import React, { Suspense } from "react";
+import React from "react";
 export const metadata: Metadata = {
   title: "Roadmaps - UpTrack",
   description:
@@ -10,9 +10,7 @@ export const metadata: Metadata = {
 const RoadmapsPage = () => {
   return (
     <div>
-      <Suspense fallback={<RoadmapListSkeleton />}>
-        <Roadmaps />
-      </Suspense>
+      <RoadmapsWrapper />
     </div>
   );
 };

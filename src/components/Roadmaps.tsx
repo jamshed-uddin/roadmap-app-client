@@ -4,12 +4,14 @@ import React from "react";
 import RoadmapLIst from "./RoadmapLIst";
 import { useGetRoadmapQuery } from "@/redux/api/roadmapApi";
 import { RoadmapListSkeleton } from "./Skeletons";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import clsx from "clsx";
 
 const Roadmaps = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
+  console.log(pathname);
 
   const { data, isLoading, error } = useGetRoadmapQuery(
     searchParams.toString()

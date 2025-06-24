@@ -22,7 +22,7 @@ const RoadmapItemTitleLink = ({ item }: { item: ItemType }) => {
           !roadmapItemProgressError &&
           progress?.progress.itemId === item?._id &&
           progress?.progress.status === "complete" &&
-          "line-through decoration-green-600"
+          "line-through decoration-indigo-600"
       )}
     >
       {item.title}

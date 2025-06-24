@@ -60,7 +60,7 @@ const LoginForm = () => {
           <input
             type="text"
             {...register("email", { required: "Email is required" })}
-            className={`border rounded-xl p-2 block w-full ${
+            className={`border rounded-md p-2 block w-full ${
               errors.email
                 ? "border-red-500 focus:outline-red-500"
                 : "border-black focus:outline-indigo-500"
@@ -88,7 +88,7 @@ const LoginForm = () => {
           <input
             type={showPassword ? "text" : "password"}
             {...register("password", { required: "Password is required" })}
-            className={`border rounded-xl p-2 block w-full ${
+            className={`border rounded-md p-2 block w-full ${
               errors.password
                 ? "border-red-500 focus:outline-red-500"
                 : "border-black focus:outline-indigo-500"

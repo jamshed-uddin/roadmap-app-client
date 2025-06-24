@@ -31,8 +31,11 @@ const UpvoteAndComment = ({ itemId }: { itemId: string }) => {
   const [deleteUpvote, { isLoading: upvoteDeleteLoading }] =
     useDeleteUpvoteMutation();
 
-  const { data: comments, isLoading: commentsLoading } =
-    useGetCommentsQuery(itemId);
+  const {
+    data: comments,
+    isLoading: commentsLoading,
+    error: commentLoadingError,
+  } = useGetCommentsQuery(itemId);
 
   console.log(comments);
 
@@ -59,7 +62,7 @@ const UpvoteAndComment = ({ itemId }: { itemId: string }) => {
         saveUpvote({ itemId });
       }
     } catch {
-      toast("Failed to upvote");
+      toast.error("Failed to upvote");
       setAlreadyUpvoted((p) => !p);
     }
   };
@@ -112,9 +115,14 @@ const UpvoteAndComment = ({ itemId }: { itemId: string }) => {
         )}
       </div>
 
+      {/* comments */}
       <div className="space-y-2  lg:w-1/2 w-full mt-10">
         {commentsLoading ? (
-          <h3>Loading...</h3>
+          commentLoadingError ? (
+            <h3>Failed to load comments</h3>
+          ) : (
+            <h3>Comments loading...</h3>
+          )
         ) : (
           comments?.map((comment) => (
             <Comment key={comment._id} comment={comment} />

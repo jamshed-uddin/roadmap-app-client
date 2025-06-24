@@ -59,7 +59,7 @@ const RegisterForm = () => {
           <input
             type="text"
             {...register("name", { required: "Name is required" })}
-            className={`border rounded-xl p-2 block w-full ${
+            className={`border rounded-md p-2 block w-full ${
               errors.name
                 ? "border-red-500 focus:outline-red-500"
                 : "border-black focus:outline-indigo-500"
@@ -74,7 +74,7 @@ const RegisterForm = () => {
           <input
             type="text"
             {...register("email", { required: "Email is required" })}
-            className={`border rounded-xl p-2 block w-full ${
+            className={`border rounded-md p-2 block w-full ${
               errors.email
                 ? "border-red-500 focus:outline-red-500"
                 : "border-black focus:outline-indigo-500"
@@ -108,7 +108,7 @@ const RegisterForm = () => {
                 message: "Password must be at least 6 characters",
               },
             })}
-            className={`border rounded-xl p-2 block w-full ${
+            className={`border rounded-md p-2 block w-full ${
               errors.password
                 ? "border-red-500 focus:outline-red-500"
                 : "border-black focus:outline-indigo-500"

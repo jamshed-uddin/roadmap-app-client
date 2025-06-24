@@ -77,7 +77,7 @@ const CommentInput = ({
         setCommentInput("");
       }
     } catch {
-      toast(`Failed to ${content ? "edit" : "create"} comment`);
+      toast.error(`Failed to ${content ? "edit" : "create"} comment`);
     }
   };
 

@@ -31,3 +31,15 @@ export const RoadmapDetailsSkeleton = () => {
     </div>
   );
 };
+
+export const ItemDetailsSkeleton = () => {
+  return (
+    <div>
+      <div className="bg-gray-300 animate-pulse rounded-xl w-1/5 h-12"></div>
+      <div className=" space-y-3 mt-5">
+        <div className="bg-gray-300 animate-pulse rounded-xl  h-8"></div>
+        <div className="bg-gray-300 animate-pulse rounded-xl w-3/4 h-8"></div>
+      </div>
+    </div>
+  );
+};

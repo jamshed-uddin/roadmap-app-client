@@ -1,5 +1,6 @@
 "use client";
 
+import { ItemDetailsSkeleton } from "@/components/Skeletons";
 import UpvoteAndComment from "@/components/UpvoteAndComment";
 import { useGetRoadmapItemQuery } from "@/redux/api/roadmapItemApi";
 import { useParams } from "next/navigation";
@@ -15,7 +16,7 @@ const RoadmapItemDetails = () => {
   } = useGetRoadmapItemQuery(roadmapItemId as string);
 
   if (isLoading) {
-    return <h1>loading...</h1>;
+    return <ItemDetailsSkeleton />;
   }
 
   if (error) {

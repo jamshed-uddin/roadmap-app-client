@@ -24,7 +24,39 @@ const userApis = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+
+    updateUser: builder.mutation<UserInfo, { _id: string; name: string }>({
+      query: ({ _id, name }) => ({
+        url: `/users/${_id}`,
+        method: "PUT",
+        body: { name },
+      }),
+    }),
+
+    changePassword: builder.mutation<
+      { message: string },
+      { userId: string; currentPassword: string; newPassword: string }
+    >({
+      query: (body) => ({
+        url: `/users/changepassword`,
+        method: "PUT",
+        body: body,
+      }),
+    }),
+
+    deleteUser: builder.mutation<{ message: string }, string>({
+      query: (userId) => ({
+        url: `/users/${userId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useLoginUserMutation, useRegisterUserMutation } = userApis;
+export const {
+  useLoginUserMutation,
+  useRegisterUserMutation,
+  useUpdateUserMutation,
+  useChangePasswordMutation,
+  useDeleteUserMutation,
+} = userApis;

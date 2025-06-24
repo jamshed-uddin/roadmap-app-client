@@ -3,7 +3,7 @@
 - server repository: [https://github.com/jamshed-uddin/roadmap-app-server](https://github.com/jamshed-uddin/roadmap-app-server)
 - live demo: [https://uptrack-nine.vercel.app/](https://uptrack-nine.vercel.app/)
 
-## 🏃‍♂️ Run Locally
+## Run Locally
 
 **Clone the repository**
 

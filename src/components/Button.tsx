@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import Spinner from "./Spinner";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -37,7 +38,10 @@ const Button = ({
       className={twMerge(clsx(baseStyle, variantStyles[variant], className))}
     >
       {loading && (
-        <span className=" animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full inline-block absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 "></span>
+        <Spinner
+          borderColor="white"
+          className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 "
+        />
       )}
       <span
         className={clsx(

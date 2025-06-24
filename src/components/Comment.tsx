@@ -4,11 +4,17 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { useState } from "react";
 import CommentInput from "./CommentInput";
+import { useAppSelector } from "@/hooks/hook";
+import { useDeleteCommentMutation } from "@/redux/api/commentApi";
+import Spinner from "./Spinner";
 
 const Comment = ({ comment }: { comment: CommentType }) => {
   const [openReplies, setOpenReplies] = useState(true);
   const [openReplyInput, setOpenReplyInput] = useState(false);
   const [openEditInput, setOpenEditInput] = useState(false);
+  const { userInfo } = useAppSelector((state) => state.user);
+  const [deleteComment, { isLoading: deleteCommentLoading }] =
+    useDeleteCommentMutation();
   return (
     <div className="">
       <div className=" mb-3">
@@ -17,8 +23,23 @@ const Comment = ({ comment }: { comment: CommentType }) => {
           <p>{comment.content}</p>
           <div className="flex items-center gap-2 text-xs font-semibold mt-2">
             <button onClick={() => setOpenReplyInput((p) => !p)}>Reply</button>
-            <button onClick={() => setOpenEditInput((p) => !p)}>Edit</button>
-            <button>Delete</button>
+            {comment.userId._id === userInfo?._id && (
+              <>
+                <button onClick={() => setOpenEditInput((p) => !p)}>
+                  Edit
+                </button>
+                <button
+                  onClick={() => deleteComment(comment._id)}
+                  disabled={deleteCommentLoading}
+                  className="flex items-center gap-1"
+                >
+                  <span>Delete</span>{" "}
+                  {deleteCommentLoading && (
+                    <Spinner borderColor="black" variant="small" />
+                  )}
+                </button>
+              </>
+            )}
           </div>
         </div>
         {openReplyInput && (
@@ -27,15 +48,18 @@ const Comment = ({ comment }: { comment: CommentType }) => {
               itemId={comment.itemId}
               replyTo={comment._id}
               onCancelClick={() => setOpenReplyInput(false)}
+              onCommentSave={() => setOpenReplyInput(false)}
             />
           </div>
         )}
         {openEditInput && (
           <div className="mt-2">
             <CommentInput
+              commentId={comment._id}
               itemId={comment.itemId}
               content={comment.content}
               onCancelClick={() => setOpenEditInput(false)}
+              onCommentSave={() => setOpenEditInput(false)}
             />
           </div>
         )}

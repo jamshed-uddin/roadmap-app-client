@@ -34,6 +34,7 @@ const commentApi = baseApi.injectEndpoints({
     deleteComment: builder.mutation<{ message: string }, string>({
       query: (commentId) => ({
         url: `/comments/${commentId}`,
+        method: "DELETE",
       }),
       invalidatesTags: ["Comments"],
     }),

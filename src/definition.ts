@@ -35,7 +35,7 @@ export type UpvoteType = {
 export type CommentType = {
   _id: string;
   itemId: string;
-  userId: Pick<UserInfo, "name">;
+  userId: Pick<UserInfo, "name" | "_id">;
   replyTo: string;
   content: string;
   replies: CommentType[];

@@ -3,24 +3,29 @@ import React, { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import {
   useCreateCommentMutation,
-  useDeleteCommentMutation,
   useUpdateCommentMutation,
 } from "@/redux/api/commentApi";
 import toast from "react-hot-toast";
+import { useAppSelector } from "@/hooks/hook";
 
 interface CommentInputPropsType {
+  commentId?: string;
   itemId: string;
   replyTo?: string | null;
   content?: string;
   onCancelClick?: () => void;
+  onCommentSave?: () => void;
 }
 
 const CommentInput = ({
+  commentId,
   itemId,
   replyTo = null,
   content,
   onCancelClick,
+  onCommentSave,
 }: CommentInputPropsType) => {
+  const { userInfo } = useAppSelector((state) => state.user);
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [commentInput, setCommentInput] = useState("");
 
@@ -28,8 +33,6 @@ const CommentInput = ({
     useCreateCommentMutation();
   const [updateComment, { isLoading: updateCommentLoading }] =
     useUpdateCommentMutation();
-  const [deleteComment, { isLoading: deleteCommentLoading }] =
-    useDeleteCommentMutation();
 
   useEffect(() => {
     if (textAreaRef.current) {
@@ -39,15 +42,27 @@ const CommentInput = ({
     }
   }, [commentInput]);
 
+  useEffect(() => {
+    if (content) {
+      setCommentInput(content);
+    }
+  }, [content]);
+
   const handleSaveComment = () => {
     try {
       if (content) {
         const editedContent = {
-          content: commentInput || content,
+          content: commentInput,
         };
 
         console.log(editedContent);
-        //   setCommentInput('')
+        updateComment({
+          id: commentId as string,
+          content: commentInput,
+          userId: userInfo?._id as string,
+        });
+        onCommentSave?.();
+        setCommentInput("");
       } else {
         if (!commentInput) return;
         const comment = {
@@ -58,7 +73,6 @@ const CommentInput = ({
 
         console.log(comment);
         createComment(comment);
-
         setCommentInput("");
       }
     } catch {
@@ -74,7 +88,7 @@ const CommentInput = ({
         rows={1.5}
         placeholder="Your comment"
         onChange={(e) => setCommentInput(e.target.value)}
-        defaultValue={content}
+        value={commentInput}
       />
       <div className=" flex justify-end gap-2">
         <Button onClick={onCancelClick} variant="secondary">

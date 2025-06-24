@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const RoadmapsPage = () => {
   return (
     <div>
-      <Suspense fallback={<RoadmapListSkeleton />}>
+      <Suspense>
         <Roadmaps />
       </Suspense>
     </div>

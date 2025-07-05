@@ -9,7 +9,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useAppDispatch } from "@/hooks/hook";
 import { setUser } from "@/redux/features/userSlice";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { setCookie } from "@/lib/cookies";
 
 type FormData = {
@@ -22,6 +22,9 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  console.log(searchParams.toString());
+  console.log(searchParams.get("callbackUrl"));
 
   const {
     register,
@@ -34,14 +37,15 @@ const LoginForm = () => {
 
   const onSubmit = async (data: FormData) => {
     setError("");
-
+    console.log(data);
     try {
       const res = await login(data).unwrap();
       localStorage.setItem("userInfo", JSON.stringify(res?.data));
       dispatch(setUser(res?.data));
       setCookie("token", res?.data?.token);
       reset();
-      router.replace("/");
+
+      router.replace(searchParams.get("callbackUrl") || "/");
     } catch (error) {
       const fetchError = error as FetchBaseQueryError;
       setError(
@@ -113,7 +117,13 @@ const LoginForm = () => {
       <div className="mt-4 text-sm">
         <h3>
           Don&apos;t have an account?{" "}
-          <Link href={"/register"} className="underline text-blue-500">
+          <Link
+            href={`${
+              "/register" +
+              (searchParams.toString() ? `?${searchParams.toString()}` : "")
+            }`}
+            className="underline text-blue-500"
+          >
             Register here
           </Link>
         </h3>

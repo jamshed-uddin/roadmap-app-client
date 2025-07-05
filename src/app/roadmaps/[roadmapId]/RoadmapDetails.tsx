@@ -13,8 +13,6 @@ const RoadmapDetails = () => {
   const { roadmapId } = useParams();
   const { userInfo } = useAppSelector((s) => s.user);
 
-  console.log(typeof roadmapId);
-
   const {
     data: roadmap,
     isLoading,
@@ -25,7 +23,10 @@ const RoadmapDetails = () => {
     data: roadmapProgress,
     isLoading: roadmapProgressLoading,
     error: roadmapProgressError,
-  } = useGetRoadmapProgressQuery({ roadmapId: roadmapId as string });
+  } = useGetRoadmapProgressQuery(
+    { roadmapId: roadmapId as string },
+    { skip: !userInfo }
+  );
 
   const calculateProgressPercentage = () => {
     const total = roadmap?.totalItems;
@@ -35,8 +36,6 @@ const RoadmapDetails = () => {
 
     return Math.ceil((Number(part) / Number(total)) * 100);
   };
-
-  console.log(calculateProgressPercentage());
 
   if (isLoading) {
     return <RoadmapDetailsSkeleton />;

@@ -11,7 +11,7 @@ const RoadmapBadge = ({
     <Link
       href={`/roadmaps/${roadmap._id}`}
       key={roadmap._id}
-      className="border border-slate-800 rounded-xl px-3 py-1.5"
+      className="border border-slate-800 rounded-xl px-3 py-1"
     >
       <h3>{roadmap.title}</h3>
     </Link>

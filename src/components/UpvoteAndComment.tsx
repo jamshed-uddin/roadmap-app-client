@@ -5,10 +5,7 @@ import {
   useGetUpvotesQuery,
   useSaveUpvoteMutation,
 } from "@/redux/api/upvoteApi";
-import {
-  ChatBubbleOvalLeftIcon,
-  ChevronDoubleUpIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronDoubleUpIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
@@ -19,8 +16,13 @@ import CommentInput from "./CommentInput";
 import { useGetCommentsQuery } from "@/redux/api/commentApi";
 import { useAppSelector } from "@/hooks/hook";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const UpvoteAndComment = ({ itemId }: { itemId: string }) => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentPath =
+    pathname + (searchParams.toString() ? `?${searchParams.toString()}` : "");
   const { userInfo } = useAppSelector((state) => state.user);
   const { data: upvotes, isLoading: upvotesLoading } = useGetUpvotesQuery(
     itemId as string
@@ -95,9 +97,6 @@ const UpvoteAndComment = ({ itemId }: { itemId: string }) => {
               </>
             )}
           </button>
-          <button className="bg-gray-200 p-2 rounded-lg flex items-center">
-            <ChatBubbleOvalLeftIcon className="w-4 h-4" />
-          </button>
         </div>
         <div className="lg:w-1/2 mt-4">
           <CommentInput itemId={itemId} />
@@ -106,7 +105,10 @@ const UpvoteAndComment = ({ itemId }: { itemId: string }) => {
         {!userInfo && (
           <div className=" absolute inset-0 z-10 bg-slate-100/50 lg:w-1/2 flex justify-center items-center">
             <h3 className="text-sm font-semibold">
-              <Link href={"/login"} className="text-indigo-600">
+              <Link
+                href={`/login?callbackUrl=${encodeURIComponent(currentPath)}`}
+                className="text-indigo-600"
+              >
                 Login
               </Link>{" "}
               to upvote or comment

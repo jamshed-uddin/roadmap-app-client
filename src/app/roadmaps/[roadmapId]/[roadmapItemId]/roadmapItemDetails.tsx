@@ -3,6 +3,7 @@
 import { ItemDetailsSkeleton } from "@/components/Skeletons";
 import Spinner from "@/components/Spinner";
 import UpvoteAndComment from "@/components/UpvoteAndComment";
+import { useAppSelector } from "@/hooks/hook";
 import {
   useGetItemProgressQuery,
   useSaveProgressMutation,
@@ -15,6 +16,7 @@ import toast from "react-hot-toast";
 
 const RoadmapItemDetails = () => {
   const { roadmapItemId } = useParams();
+  const { userInfo } = useAppSelector((state) => state.user);
 
   const [updateProgress, { isLoading: progressUpdateLoading }] =
     useUpdateProgressMutation();
@@ -31,7 +33,10 @@ const RoadmapItemDetails = () => {
     isLoading: roadmapItemProgressLoading,
     error: roadmapItemProgressError,
     refetch: progressRefetch,
-  } = useGetItemProgressQuery({ itemId: roadmapItemId as string });
+  } = useGetItemProgressQuery(
+    { itemId: roadmapItemId as string },
+    { skip: !userInfo }
+  );
 
   const handleProgress = async (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedStatus = e.target.value;

@@ -3,6 +3,53 @@
 - server repository: [https://github.com/jamshed-uddin/roadmap-app-server](https://github.com/jamshed-uddin/roadmap-app-server)
 - live demo: [https://uptrack-nine.vercel.app/](https://uptrack-nine.vercel.app/)
 
+## Tech stack
+
+- Next js
+- Redux toolkit + RTK Query
+- Tailwind CSS
+
+## Core features
+
+- #### Authentication and account management
+
+  - Custom email/password based authentication
+  - JWT token generation on login and registration.
+  - User name update option.
+  - Change password with current password verification.
+  - Delete account after password verification.
+
+- #### Roadmap
+
+  - Roadmaps and their contents exposed to public.
+  - Roadmap contents are open to view and further interaction like upvote, comment requires authentication.
+  - Filter option: filter by popularity.
+  - Logged in user can filter by status(inProgress, complete)
+
+- #### Upvote
+
+  - Registered users can upvote on roadmap contents.
+  - Users can upvote only once on an item.
+
+- #### Comment
+
+  - Registered users can comment on roadmap contents.
+  - Users can reply on other comments.
+  - Users can edit or delete their own comments and replies.
+
+- #### Progress tracking
+  - Registered users can mark a roadmap item as In progress or Complete and Pending to delete the content from progress record.
+  - Strikethrough to indicate complete item in roadmap item list
+
+## Enhancements
+
+- Next js for fast, file-based routing, SEO friendly web pages.
+- Tailwind CSS for fast and consistent styling.
+- RTK Query for centralized and efficient data fetching and mutation.
+- React hook form for form validation and proper error message.
+- Enhanced error boundaries and fallback UIs.
+- Loading skeleton UI for data loading state.
+
 ## Run Locally
 
 **Clone the repository**

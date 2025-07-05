@@ -7,7 +7,7 @@ import {
   Cog6ToothIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import clsx from "clsx";
@@ -17,6 +17,9 @@ const Navbar = () => {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const currentPath =
+    pathname + (searchParams.toString() ? `?${searchParams.toString()}` : "");
 
   const { userInfo } = useAppSelector((state) => state.user);
 
@@ -57,7 +60,7 @@ const Navbar = () => {
             </Button>
           ) : (
             <Link
-              href={"/login"}
+              href={`/login?callbackUrl=${encodeURIComponent(currentPath)}`}
               className="bg-indigo-600 rounded-md text-slate-100 px-3 py-1.5 active:scale-95 font-medium cursor-pointer"
             >
               Login

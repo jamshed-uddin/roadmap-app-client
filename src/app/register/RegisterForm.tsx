@@ -9,7 +9,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useAppDispatch } from "@/hooks/hook";
 import { setUser } from "@/redux/features/userSlice";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { setCookie } from "@/lib/cookies";
 
 type FormData = {
@@ -24,6 +24,7 @@ const RegisterForm = () => {
   const [error, setError] = useState("");
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const {
     reset,
     register,
@@ -39,7 +40,7 @@ const RegisterForm = () => {
       dispatch(setUser(res?.data));
       setCookie("token", res?.data?.token);
       reset();
-      router.replace("/");
+      router.replace(searchParams.get("callbackUrl") || "/");
     } catch (error) {
       console.log(error);
       const fetchError = error as FetchBaseQueryError;

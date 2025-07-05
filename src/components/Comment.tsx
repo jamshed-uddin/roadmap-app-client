@@ -38,7 +38,9 @@ const Comment = ({
     <div className="">
       <div className=" mb-3">
         <div className="bg-gray-200 p-2 rounded-lg ">
-          <h3 className="text-xs font-semibold">{comment.userId.name}</h3>{" "}
+          <h3 className="text-xs font-semibold">
+            {comment.userId.name || "[UpTrack user]"}
+          </h3>{" "}
           <p>{comment.content}</p>
           {userInfo && (
             <div className="flex items-center gap-2 text-xs font-semibold mt-2">

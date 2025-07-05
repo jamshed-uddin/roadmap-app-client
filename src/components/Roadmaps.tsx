@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RoadmapLIst from "./RoadmapLIst";
 import { useGetRoadmapQuery } from "@/redux/api/roadmapApi";
 import { RoadmapListSkeleton } from "./Skeletons";
@@ -10,12 +10,17 @@ import { useAppSelector } from "@/hooks/hook";
 
 const Roadmaps = () => {
   const searchParams = useSearchParams();
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const { userInfo } = useAppSelector((state) => state.user);
 
   const { data, isLoading, error } = useGetRoadmapQuery(
     searchParams.toString()
   );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const setParams = (name: string, value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -30,6 +35,7 @@ const Roadmaps = () => {
 
   return (
     <div>
+      {/* filters */}
       <div className="flex gap-2 justify-end text-sm">
         <ul className="border rounded-md flex   divide-x w-fit">
           <li
@@ -48,7 +54,7 @@ const Roadmaps = () => {
             Popular
           </li>
         </ul>
-        {userInfo && (
+        {userInfo && mounted && (
           <ul className="border rounded-md flex  divide-x w-fit">
             <li
               className={clsx(
@@ -74,6 +80,8 @@ const Roadmaps = () => {
         )}
       </div>
       <h2 className="text-center text-lg mb-4">Roadmaps</h2>
+
+      {/* roadmap */}
       {isLoading ? (
         <RoadmapListSkeleton />
       ) : error ? (

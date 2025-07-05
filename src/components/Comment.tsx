@@ -9,7 +9,13 @@ import { useDeleteCommentMutation } from "@/redux/api/commentApi";
 import Spinner from "./Spinner";
 import toast from "react-hot-toast";
 
-const Comment = ({ comment }: { comment: CommentType }) => {
+const Comment = ({
+  comment,
+  level = 1,
+}: {
+  comment: CommentType;
+  level?: number;
+}) => {
   const [openReplies, setOpenReplies] = useState(true);
   const [openReplyInput, setOpenReplyInput] = useState(false);
   const [openEditInput, setOpenEditInput] = useState(false);
@@ -32,13 +38,15 @@ const Comment = ({ comment }: { comment: CommentType }) => {
     <div className="">
       <div className=" mb-3">
         <div className="bg-gray-200 p-2 rounded-lg ">
-          <h3 className="text-xs font-semibold">{comment.userId.name}</h3>
+          <h3 className="text-xs font-semibold">{comment.userId.name}</h3>{" "}
           <p>{comment.content}</p>
           {userInfo && (
             <div className="flex items-center gap-2 text-xs font-semibold mt-2">
-              <button onClick={() => setOpenReplyInput((p) => !p)}>
-                Reply
-              </button>
+              {level < 3 && (
+                <button onClick={() => setOpenReplyInput((p) => !p)}>
+                  Reply
+                </button>
+              )}
               {comment.userId._id === userInfo?._id && (
                 <>
                   <button onClick={() => setOpenEditInput((p) => !p)}>
@@ -101,7 +109,7 @@ const Comment = ({ comment }: { comment: CommentType }) => {
         comment?.replies?.map((comment) => (
           <div key={comment._id} className="ml-5">
             {" "}
-            <Comment comment={comment} />
+            <Comment comment={comment} level={level + 1} />
           </div>
         ))}
     </div>

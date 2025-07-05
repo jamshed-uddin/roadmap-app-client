@@ -81,6 +81,7 @@ const CommentInput = ({
         if (res.error) {
           return toast.error("Failed to post comment");
         }
+        onCommentSave?.();
         setCommentInput("");
       }
     } catch {

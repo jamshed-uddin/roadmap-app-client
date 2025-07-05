@@ -12,7 +12,7 @@ export type ItemType = {
   _id: string;
   title: string;
   type: string;
-  roadmapId: string;
+  roadmapId: Pick<RoadmapType, "_id" | "title">;
   subtopicTo: string | null;
   description: string;
   items: ItemType[];

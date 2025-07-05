@@ -15,6 +15,7 @@ type FormData = {
 };
 
 const ChangePassword = () => {
+  const [formChanged, setFormChanged] = useState(false);
   const { userInfo } = useAppSelector((state) => state.user);
   const [changePassword, { isLoading: changePasswordLoading }] =
     useChangePasswordMutation();
@@ -51,7 +52,11 @@ const ChangePassword = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 mt-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-2 mt-6"
+      onChange={() => setFormChanged(true)}
+    >
       <div>
         <label className="flex justify-between items-center text-sm font-medium mb-1">
           <span>Current password</span>
@@ -155,7 +160,7 @@ const ChangePassword = () => {
       <div className="flex justify-end">
         <Button
           loading={changePasswordLoading}
-          disabled={changePasswordLoading}
+          disabled={changePasswordLoading || !formChanged}
           type="submit"
         >
           Save

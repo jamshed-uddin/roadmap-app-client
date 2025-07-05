@@ -70,7 +70,7 @@ const Navbar = () => {
           {open && (
             <ul
               className={clsx(
-                " absolute top-10 px-4 py-2 rounded-md shadow-md bg-slate-50 text-sm space-y-2 "
+                " absolute top-10 px-4 py-2 rounded-md shadow-md bg-slate-50 text-sm space-y-2 z-10"
               )}
             >
               <li>

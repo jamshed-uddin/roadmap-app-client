@@ -21,7 +21,7 @@ const Spinner = ({
     <span
       className={twMerge(
         clsx(
-          "animate-spin border-2    rounded-full inline-block ",
+          "animate-spin border-2  !opacity-100  rounded-full inline-block ",
           spinnerVariant[variant],
           borderColor === "white"
             ? "border-white border-t-transparent"

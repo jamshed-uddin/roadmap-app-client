@@ -52,11 +52,6 @@ const CommentInput = ({
     if (!userInfo) return;
     try {
       if (content) {
-        const editedContent = {
-          content: commentInput,
-        };
-
-        console.log(editedContent);
         const res = await updateComment({
           id: commentId as string,
           content: commentInput,

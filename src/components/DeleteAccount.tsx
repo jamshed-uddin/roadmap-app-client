@@ -12,6 +12,7 @@ type FormData = {
   password: string;
 };
 const DeleteAccount = () => {
+  const [formChanged, setFormChanged] = useState(false);
   const { userInfo } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -24,9 +25,8 @@ const DeleteAccount = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async () => {
     try {
-      console.log(data);
       const res = await deleteUser(userInfo?._id as string);
       if (res.error) {
         return toast.error("Failed to delete account");
@@ -39,7 +39,11 @@ const DeleteAccount = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 mt-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      onChange={() => setFormChanged(true)}
+      className="space-y-2 mt-6"
+    >
       <div>
         <label className="flex justify-between items-center text-sm font-medium mb-1">
           <span>Password</span>
@@ -75,7 +79,7 @@ const DeleteAccount = () => {
       <div className="flex justify-end">
         <Button
           loading={deleteUserLoading}
-          disabled={deleteUserLoading}
+          disabled={deleteUserLoading || !formChanged}
           type="submit"
         >
           Delete

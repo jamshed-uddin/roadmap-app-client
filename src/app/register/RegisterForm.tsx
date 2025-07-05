@@ -42,7 +42,6 @@ const RegisterForm = () => {
       reset();
       router.replace(searchParams.get("callbackUrl") || "/");
     } catch (error) {
-      console.log(error);
       const fetchError = error as FetchBaseQueryError;
       setError(
         (fetchError?.data as { message: string })?.message ||

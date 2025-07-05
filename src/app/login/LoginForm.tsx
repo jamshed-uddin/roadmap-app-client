@@ -35,7 +35,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data: FormData) => {
     setError("");
-    console.log(data);
+
     try {
       const res = await login(data).unwrap();
       localStorage.setItem("userInfo", JSON.stringify(res?.data));

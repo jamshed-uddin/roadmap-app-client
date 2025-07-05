@@ -20,7 +20,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const baseStyle =
-    "bg-indigo-600  rounded-md  text-sm lg:text-base   active:scale-95 font-medium  relative disabled:cursor-not-allowed cursor-pointer text-nowrap";
+    "bg-indigo-600  rounded-md  text-sm lg:text-base   active:scale-95 font-medium  relative disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer text-nowrap";
 
   const variantStyles: {
     primary: string;
@@ -45,7 +45,7 @@ const Button = ({
       )}
       <span
         className={clsx(
-          "px-3 py-1.5 block",
+          "px-3 py-1.5 block ",
           loading ? "opacity-0" : "opacity-100"
         )}
       >

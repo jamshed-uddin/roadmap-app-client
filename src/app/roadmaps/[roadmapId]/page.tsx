@@ -32,8 +32,6 @@ const RoadmapDetailPage = async ({
 }) => {
   const { roadmapId } = await params;
 
-  console.log(roadmapId);
-
   const roadmap = await getRoadmap(roadmapId);
 
   return (

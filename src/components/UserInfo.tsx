@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { useUpdateUserMutation } from "@/redux/api/userApis";
@@ -15,6 +15,7 @@ type FormData = {
 };
 
 const UserInfo = () => {
+  const [formChanged, setFormChanged] = useState(false);
   const { userInfo } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [updateUser, { isLoading: updateUserLoading }] =
@@ -27,12 +28,10 @@ const UserInfo = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      console.log(data);
       const res = await updateUser({
         _id: userInfo?._id as string,
         name: data.name,
       });
-      console.log();
 
       if (res.error) {
         return toast.error("Failed to update user info");
@@ -45,7 +44,11 @@ const UserInfo = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-2 mt-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      onChange={() => setFormChanged(true)}
+      className="space-y-2 mt-6"
+    >
       <div>
         <label className="text-sm font-medium mb-1 block">Name</label>
         <input
@@ -81,7 +84,7 @@ const UserInfo = () => {
       </div>
       <div className="flex justify-end">
         <Button
-          disabled={updateUserLoading}
+          disabled={updateUserLoading || !formChanged}
           loading={updateUserLoading}
           type="submit"
         >

@@ -3,6 +3,11 @@
 - server repository: [https://github.com/jamshed-uddin/roadmap-app-server](https://github.com/jamshed-uddin/roadmap-app-server)
 - live demo: [https://uptrack-nine.vercel.app/](https://uptrack-nine.vercel.app/)
 
+### Test user
+
+- email: johndoe@gmail.com
+- password: passjohndoe
+
 ## Tech stack
 
 - Next js

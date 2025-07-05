@@ -23,8 +23,6 @@ const LoginForm = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
-  console.log(searchParams.toString());
-  console.log(searchParams.get("callbackUrl"));
 
   const {
     register,

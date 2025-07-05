@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import RegisterForm from "./RegisterForm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -21,7 +21,9 @@ const Register = async () => {
   return (
     <div className="h-screen ">
       <div className="h-full flex items-center justify-center">
-        <RegisterForm />
+        <Suspense>
+          <RegisterForm />
+        </Suspense>
       </div>
     </div>
   );

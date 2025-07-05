@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import LoginForm from "./LoginForm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -20,7 +20,9 @@ const Login = async () => {
   return (
     <div className="h-screen ">
       <div className="h-full flex items-center justify-center">
-        <LoginForm />
+        <Suspense>
+          <LoginForm />
+        </Suspense>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import StoreProvider from "@/providers/StoreProvider";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
 
 const ibmPlex = IBM_Plex_Sans({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -31,7 +32,9 @@ export default function RootLayout({
         <StoreProvider>
           <div className="flex flex-col h-full min-h-screen">
             <Toaster />
-            <Navbar />
+            <Suspense>
+              <Navbar />
+            </Suspense>
             <main className="my-5 flex-grow">{children}</main>
             <Footer />
           </div>

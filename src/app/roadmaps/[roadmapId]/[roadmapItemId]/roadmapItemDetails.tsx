@@ -10,7 +10,7 @@ import {
   useUpdateProgressMutation,
 } from "@/redux/api/progressApi";
 
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, Suspense } from "react";
 import toast from "react-hot-toast";
 
 const RoadmapItemDetails = ({ item }: { item: ItemType }) => {
@@ -106,7 +106,9 @@ const RoadmapItemDetails = ({ item }: { item: ItemType }) => {
         <h4 className="text-2xl lg:text-3xl font-medium mb-3">{item?.title}</h4>
         <p className="text-base lg:text-lg">{item?.description}</p>
       </div>
-      <UpvoteAndComment itemId={item._id as string} />
+      <Suspense>
+        <UpvoteAndComment itemId={item._id as string} />
+      </Suspense>
     </div>
   );
 };
